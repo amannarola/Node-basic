@@ -1,0 +1,6 @@
+var person=function(a,b){
+    var c=a+b;
+    console.log("Addition="+c)
+}
+
+person(4,5);

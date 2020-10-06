@@ -1,0 +1,58 @@
+const express = require("express");
+const app = express();
+var mw = require('./my-midleware.js');
+app.use('/static',express.static('public'));
+
+
+var Validation=function(req,res,next){
+    console.log('Midleware working');
+    next();
+}
+
+var userValidation=function(req,res,next){
+    if(req.params.username == 'aman'){
+         console.log('User Validated');
+    }
+    else{
+        console.log('Not Authorized');
+    }
+    next();
+}
+app.use(userValidation);
+
+app.use(mw({ option1: '1', option2: '2'}))
+
+app.get('/',Validation,(req,res)=>{
+    res.send("Hello Tutorials website");
+});
+
+app.get('/users/:username',(req,res)=>{
+    res.send("Users Tutorials");
+});
+/*
+app.get('/ab(*)cd',(req,res)=>{
+    res.sendFile(__dirname+ '/index.html');
+});
+
+app.get("/users/:Id?",(req,res)=>{
+    if(req.params.Id == undefined){
+        res.send("All User Data Accessed");
+    }
+    else{
+        res.send("User Data Accessed: "+ req.params.Id);
+    }
+    
+});
+
+app.get("/flights/:From?.:To?",(req,res)=>{
+    console.log(req.params);
+    res.send("Search for flights: "+" From: "+ req.params.From +"To:"+ req.params.To);
+});
+
+app.get("/users/profile",(req,res)=>{
+    res.send("User Profile Data Accessed");
+});
+
+*/
+app.listen(3000,()=>console.log("Server Running on port: 3000"));
+

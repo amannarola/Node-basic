@@ -1,0 +1,9 @@
+
+//arrow function
+
+var users=(a,b)=>{
+    var c=a+b;
+    console.log("Addition of"+a+ "and" +b+ "is=" +c);
+}
+
+users(4,5);

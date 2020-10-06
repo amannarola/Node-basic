@@ -1,0 +1,3 @@
+var users={name:"Aman Narola",age:19,email:"narolaaman987@gmail.com"}
+
+console.log(users.name)
